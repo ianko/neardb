@@ -126,18 +126,18 @@ export function uuid() {
   })
 }
 
-// /**
-//  * Retries method call for N amount of times if fails
-//  * @param method - method to retry
-//  * @param n - number of times to try the method
-//  * @param params - parameters to get passed into the method
-//  * @returns promise
-//  */
-// export async function retry(method: Function, n: number, ...params: any[]) {
-//   try {
-//     return await method(...params)
-//   } catch (err) {
-//     if (n === 1) throw err
-//     return retry(method, n - 1, ...params)
-//   }
-// }
+/**
+ * Retries method call for N amount of times if fails
+ * @param method - method to retry
+ * @param n - number of times to try the method
+ * @param params - parameters to get passed into the method
+ * @returns promise
+ */
+export async function retry(method: Function, n: number, ...params: any[]) {
+  try {
+    return await method(...params)
+  } catch (err) {
+    if (n === 1) throw err
+    return retry(method, n - 1, ...params)
+  }
+}
